@@ -4,7 +4,7 @@
 
 1. 读取 `config.json`，如果存在 `config.local.json`，用它深度覆盖默认配置。对象递归合并，数组整体替换。
 2. 选择 `git.defaultProfile` 指定的 profile。
-3. 确认 `userName`、`userEmail`、`githubUsername`、`defaultBranch` 是否完整。
+3. 确认 `userName`、`userEmail`、`githubUsername`、`defaultBranch` 是否完整且不是示例占位值。
 4. 检查当前目录：
 
 ```bash
@@ -19,14 +19,14 @@ git init
 git branch -M <defaultBranch>
 ```
 
-6. 如果 `userName` 和 `userEmail` 都是非空有效值，写入项目级身份：
+6. 如果 `userName` 和 `userEmail` 都是真实有效值，写入项目级身份：
 
 ```bash
 git config --local user.name "<userName>"
 git config --local user.email "<userEmail>"
 ```
 
-7. 如果任一值为空，停止并询问用户；禁止把空值写入 Git 配置。
+7. 如果任一值为空或仍是 `Your Name`、`you@example.com` 等示例占位值，停止并询问用户；禁止把空值或占位值写入 Git 配置。
 8. 根据 `files.gitignoreSecrets` 补充 `.gitignore`。
 9. 如果需要创建 GitHub remote，但缺少仓库名、组织名、remote 协议或认证方式，先询问用户。
 
@@ -34,7 +34,7 @@ git config --local user.email "<userEmail>"
 
 1. 读取 `localModels.defaultProvider`。
 2. 获取 provider 的 `baseUrl`、`apiKeyRequired`、`apiKeyEnv`、`apiKey`、`defaultModel`、`envNames`。
-3. 如果 `baseUrl` 或 `defaultModel` 为空，询问用户。
+3. 如果 `baseUrl` 或 `defaultModel` 为空或仍是 `your-model-name` 等示例占位值，询问用户。
 4. 如果 `apiKeyEnv` 非空，先检查环境变量是否存在。
 5. 如果 `apiKeyRequired=true`，且环境变量不存在、`apiKey` 为空，询问用户是否要写入本地 env 文件或改用环境变量。
 6. 如果 `apiKeyRequired=false`，且 key 为空，不要阻塞；仅在目标项目或 SDK 强制需要 key 时写入占位值。

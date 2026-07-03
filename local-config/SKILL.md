@@ -23,10 +23,11 @@ description: "基于用户可编辑配置文件的本地项目配置 skill。用
 ## 配置读取规则
 
 - `config.json` 中的空字符串、空数组、`null`、`"ask"` 都表示需要询问用户或从项目现状推断后再确认。
+- 示例占位值也必须视为未配置，包括但不限于 `your-*`、`replace-me`、`TODO`、`Your Name`、`you@example.com`、`your-github-username`、`your-model-name`。
 - `config.json` 只放可提交的默认配置，不要放真实密钥。真实 API key、私有 base URL、私有邮箱等本地敏感覆盖值应放在 `config.local.json` 或环境变量中。
 - 如果用户要求保存本机私有配置，创建或修改 `config.local.json`，不要把私有值写入 `config.json`。
 - 当同时存在 `apiKey` 与 `apiKeyEnv` 时，优先使用环境变量；只有环境变量不存在且 `apiKey` 非空时才使用配置文件里的 key。
-- 写入任何配置前必须校验值非空；禁止把空字符串、`null`、`"ask"` 写入 Git 配置、env 文件、remote URL 或安装命令。
+- 写入任何配置前必须校验值真实有效；禁止把空字符串、`null`、`"ask"` 或示例占位值写入 Git 配置、env 文件、remote URL 或安装命令。
 - 任何输出给用户的密钥、token、cookie、私有 endpoint 都必须脱敏。
 - 如果配置和项目已有约定冲突，先说明冲突，再询问用户选择。
 - 如果 `behavior.dryRunByDefault` 为 `true`，只能输出计划、待修改文件和待执行命令，不得实际写文件、改 Git 配置或安装依赖，除非用户在当前对话中明确确认执行。
@@ -46,16 +47,16 @@ git config --local user.name
 git config --local user.email
 ```
 
-4. 如果项目级身份缺失，且配置中的 `userName` 和 `userEmail` 都是非空有效值，写入项目级配置：
+4. 如果项目级身份缺失，且配置中的 `userName` 和 `userEmail` 都是真实有效值，写入项目级配置：
 
 ```bash
 git config --local user.name "<userName>"
 git config --local user.email "<userEmail>"
 ```
 
-5. 如果 `userName` 或 `userEmail` 为空，停止并询问用户；禁止写入空 Git 身份。
+5. 如果 `userName` 或 `userEmail` 为空或仍是示例占位值，停止并询问用户；禁止写入空值或占位 Git 身份。
 6. 不要默认执行 `git config --global`。
-7. 如果 `githubUsername`、remote URL、仓库名等配置为空，创建 GitHub 远程仓库或设置 remote 前必须询问用户。
+7. 如果 `githubUsername`、remote URL、仓库名等配置为空或仍是示例占位值，创建 GitHub 远程仓库或设置 remote 前必须询问用户。
 8. 修改 `.gitignore` 时保留已有内容，只补充配置中 `files.gitignoreSecrets` 指定的本地密钥文件规则。
 
 ## 本地大模型配置

@@ -7,7 +7,9 @@
 1. 先读取 `config.json`。
 2. 如果存在 `config.local.json`，用它深度覆盖 `config.json`。对象递归合并，数组整体替换。
 3. `config.local.example.json` 只是示例，不能当作有效配置读取。
-4. 写入任何项目配置前必须校验值非空；空字符串、`null`、空数组和 `"ask"` 都不能写入目标项目。
+4. 写入任何项目配置前必须校验值真实有效；空字符串、`null`、空数组、`"ask"` 和示例占位值都不能写入目标项目。
+
+示例占位值包括但不限于 `your-*`、`replace-me`、`TODO`、`Your Name`、`you@example.com`、`your-github-username`、`your-model-name`。如果用户把 `config.local.example.json` 复制成 `config.local.json` 但没有修改这些值，必须把它们当作未配置并询问用户。
 
 如果用户要求保存本机私有配置，创建或修改 `config.local.json`；不要把真实 API key、私有 endpoint、私有邮箱等值写入可提交的 `config.json`。
 
