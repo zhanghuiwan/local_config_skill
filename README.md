@@ -29,6 +29,18 @@ After installation, edit the installed skill configuration:
 
 Do not put real API keys or other secrets in `config.json`.
 
+## Repository Layout
+
+The installable skill lives in `local-config/`:
+
+```text
+local-config/
+├── SKILL.md
+├── config.json
+├── config.local.example.json
+└── references/
+```
+
 ## Usage
 
 Ask your agent to use the `local-config` skill when creating or configuring a project, for example:
@@ -69,6 +81,18 @@ npx skills add zhanghuiwan/local_config_skill
 - `config.local.example.json`：创建 `config.local.json` 时可参考的模板。
 
 不要把真实 API key 或其他密钥写入 `config.json`。
+
+## 仓库结构
+
+可安装的 skill 位于 `local-config/`：
+
+```text
+local-config/
+├── SKILL.md
+├── config.json
+├── config.local.example.json
+└── references/
+```
 
 ## 使用
 
