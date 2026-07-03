@@ -1,0 +1,33 @@
+{
+  "git": {
+    "defaultProfile": "default",
+    "profiles": {
+      "default": {
+        "userName": "Your Name",
+        "userEmail": "you@example.com",
+        "githubUsername": "your-github-username"
+      }
+    }
+  },
+  "localModels": {
+    "defaultProvider": "openaiCompatible",
+    "providers": {
+      "openaiCompatible": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "apiKeyRequired": false,
+        "apiKeyEnv": "OPENAI_API_KEY",
+        "apiKey": "",
+        "defaultModel": "your-model-name"
+      }
+    }
+  },
+  "python": {
+    "enabled": "auto",
+    "preferredCondaEnv": "",
+    "createEnv": {
+      "enabled": "ask",
+      "name": "",
+      "pythonVersion": "3.11"
+    }
+  }
+}

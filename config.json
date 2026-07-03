@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "git": {
+    "defaultProfile": "default",
+    "profiles": {
+      "default": {
+        "userName": "",
+        "userEmail": "",
+        "githubUsername": "",
+        "defaultBranch": "main",
+        "commitSigning": "ask",
+        "signingKey": ""
+      }
+    }
+  },
+  "localModels": {
+    "defaultProvider": "openaiCompatible",
+    "providers": {
+      "openaiCompatible": {
+        "baseUrl": "",
+        "apiKeyRequired": "ask",
+        "apiKeyEnv": "OPENAI_API_KEY",
+        "apiKey": "",
+        "defaultModel": "",
+        "envNames": {
+          "baseUrl": "OPENAI_BASE_URL",
+          "apiKey": "OPENAI_API_KEY",
+          "model": "LOCAL_LLM_MODEL"
+        },
+        "headers": {}
+      },
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "apiKeyRequired": false,
+        "apiKeyEnv": "",
+        "apiKey": "",
+        "defaultModel": "",
+        "envNames": {
+          "baseUrl": "OPENAI_BASE_URL",
+          "apiKey": "OPENAI_API_KEY",
+          "model": "LOCAL_LLM_MODEL"
+        },
+        "headers": {}
+      },
+      "lmStudio": {
+        "baseUrl": "http://127.0.0.1:1234/v1",
+        "apiKeyRequired": false,
+        "apiKeyEnv": "",
+        "apiKey": "",
+        "defaultModel": "",
+        "envNames": {
+          "baseUrl": "OPENAI_BASE_URL",
+          "apiKey": "OPENAI_API_KEY",
+          "model": "LOCAL_LLM_MODEL"
+        },
+        "headers": {}
+      }
+    }
+  },
+  "files": {
+    "envFile": ".env.local",
+    "envExampleFile": ".env.example",
+    "gitignoreSecrets": [
+      ".env",
+      ".env.*",
+      "!.env.example",
+      "!.env.*.example",
+      ".agent-local.json",
+      ".local-model.json",
+      ".llmrc",
+      ".llmrc.json"
+    ]
+  },
+  "python": {
+    "enabled": "auto",
+    "projectMarkers": [
+      "pyproject.toml",
+      "requirements.txt",
+      "requirements-dev.txt",
+      "environment.yml",
+      "environment.yaml",
+      "setup.py",
+      "setup.cfg",
+      "Pipfile",
+      "poetry.lock",
+      "uv.lock"
+    ],
+    "preferredCondaEnv": "",
+    "allowInstallIntoBase": false,
+    "allowVenvFallback": true,
+    "packageManagerPreference": "conda-first",
+    "createEnv": {
+      "enabled": "ask",
+      "name": "",
+      "pythonVersion": "3.11"
+    },
+    "cuda": {
+      "requireProbe": true,
+      "preferredCudaVersion": "",
+      "framework": "",
+      "installCommandOverride": ""
+    }
+  },
+  "behavior": {
+    "askBeforeGlobalChanges": true,
+    "redactSecretsInOutput": true,
+    "preserveExistingFiles": true,
+    "dryRunByDefault": false
+  }
+}
